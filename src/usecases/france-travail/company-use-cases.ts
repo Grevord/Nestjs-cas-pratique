@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { ICompanyServices } from "src/core/abstracts/company-services.service";
-import { Company } from "src/core/entities/company.enity";
+import { Company } from "src/core/entities/company.entity";
 
 @Injectable()
 export class CompanyUseCases {
