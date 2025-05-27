@@ -8,6 +8,6 @@ export abstract class ICompanyServices {
 
     constructor(readonly httpService: HttpService){}
 
-    abstract getCompaniesByJobAndSector(city: string, job: string): Promise<Company[]>
-    protected abstract getAuthCredentials(): Promise<AuthCredEntity>
+    abstract getCompaniesByJobAndSector(city: string, job: string, limit: number): Promise<Company[]>
+    protected abstract getAuthCredentials(): Promise<AuthCredEntity>;
 }

@@ -10,19 +10,16 @@ import { Company } from 'src/core/entities/company.entity';
 @Injectable()
 export class CompanyService extends ICompanyServices {  
 
-
-  async getCompaniesByJobAndSector(city: string, job: string): Promise<Company[]> {
-   
+  
+  async getCompaniesByJobAndSector(city: string, job: string, limit: number): Promise<Company[]> {
 
     const authInfo = await this.getAuthCredentials();
 
 
     let token = `${authInfo.token_type} ${authInfo.access_token}`;
-    console.log(process.env.CLIENT_ID);
-    
 
     const { data } = await firstValueFrom(
-      this.httpService.get(`https://api.francetravail.io/partenaire/labonneboite/v2/recherche?city=Dijon&job=Boul`, 
+      this.httpService.get(`https://api.francetravail.io/partenaire/labonneboite/v2/recherche?city=${city}&job=${job}`, 
         {
           headers: { 
             'Accept': 'application/json', 
@@ -36,7 +33,15 @@ export class CompanyService extends ICompanyServices {
         })
       )
     )
-    return data;
+
+    // Récupère les entreprises depuis le résultat de la requete
+    const companies: Array<Company> = data.items;
+    const filteredByHighPotential = companies.filter(c => c.is_high_potential)
+    const orderedByPotentialValue = filteredByHighPotential.sort(({hiring_potential:a}, {hiring_potential:b}) => b - a )
+    const limitResultsShown = orderedByPotentialValue.slice(0, limit ?? orderedByPotentialValue.length )
+
+
+    return limitResultsShown;
 
   }
 
@@ -54,7 +59,7 @@ export class CompanyService extends ICompanyServices {
         {
           headers: {  
             'Content-Type': 'application/x-www-form-urlencoded', 
-          }
+          },
         }
       ).pipe(
         catchError((error: AxiosError) => {

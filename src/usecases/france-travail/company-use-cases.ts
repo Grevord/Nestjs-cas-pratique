@@ -8,7 +8,7 @@ export class CompanyUseCases {
         private companyServices: ICompanyServices
     ) {}
 
-    getCompaniesByJobAndSector(city: string, job: string): Promise<Company[]> {
-        return this.companyServices.getCompaniesByJobAndSector(city, job);
+    getCompaniesByJobAndSector(city: string, job: string, limit: number): Promise<Company[]> {
+        return this.companyServices.getCompaniesByJobAndSector(city, job, limit);
     }
 }

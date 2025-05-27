@@ -5,11 +5,9 @@ import { CompanyUseCases } from 'src/usecases/france-travail/company-use-cases';
 export class FranceTravailController {
     constructor(private companyUseCases: CompanyUseCases){}
 
-
     @Get()
-    async getCompanies(@Query('city') city: string, @Query('job') job: string){
-        return this.companyUseCases.getCompaniesByJobAndSector(city, job)
+    async getCompanies(@Query('city') city: string, @Query('job') job: string, @Query('limit') limit: number){
+        return this.companyUseCases.getCompaniesByJobAndSector(city, job, limit)
     }
-
 }
 
