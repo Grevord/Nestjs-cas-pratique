@@ -19,7 +19,7 @@ export class CompanyService extends ICompanyServices {
     let token = `${authInfo.token_type} ${authInfo.access_token}`;
 
     const { data } = await firstValueFrom(
-      this.httpService.get(`https://api.francetravail.io/partenaire/labonneboite/v2/recherche?city=${city}&job=${job}`, 
+      this.httpService.get(`https://api.francetravail.io/partenaire/labonneboite/v2/recherche?city=${city}&job=${job}&page_size=100`, 
         {
           headers: { 
             'Accept': 'application/json', 
