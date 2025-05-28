@@ -14,8 +14,6 @@ export class CompanyService extends ICompanyServices {
   async getCompaniesByJobAndSector(city: string, job: string, limit: number): Promise<Company[]> {
 
     const authInfo = await this.getAuthCredentials();
-
-
     let token = `${authInfo.token_type} ${authInfo.access_token}`;
 
     const { data } = await firstValueFrom(
@@ -46,6 +44,12 @@ export class CompanyService extends ICompanyServices {
   }
 
   protected async getAuthCredentials(): Promise<AuthCredEntity> {
+
+    if(!process.env.CLIENT_ID || !process.env.CLIENT_SECRET){
+      throw "No auth credentials provided in env"
+    }
+
+
     let query = {
       'grant_type': 'client_credentials',
       'client_id': process.env.CLIENT_ID,
