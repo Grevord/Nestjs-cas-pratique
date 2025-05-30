@@ -149,4 +149,5 @@ return limitResultsShown;
 ```
 
 # Remarques
- 
+
+ - Les tokens générés par france travail sont valable pendant 24 minutes, il y a surement une meilleure méthode que celle de regénérer à chaque appels.
