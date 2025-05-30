@@ -6,6 +6,5 @@ import { FranceTravailServicesModule } from '../../services/france-travail-servi
   imports: [FranceTravailServicesModule],
   providers: [CompanyUseCases],
   exports: [CompanyUseCases],
-
 })
 export class FranceTravailModule {}

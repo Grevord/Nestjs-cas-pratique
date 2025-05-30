@@ -23,7 +23,7 @@ import { FranceTravailModule } from './usecases/france-travail/france-travail-us
       ],
     }),
     FranceTravailModule,
-    FranceTravailServicesModule
+    FranceTravailServicesModule,
   ],
   controllers: [FranceTravailController],
   providers: [],

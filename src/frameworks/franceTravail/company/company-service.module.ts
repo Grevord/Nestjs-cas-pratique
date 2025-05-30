@@ -9,9 +9,9 @@ import { CompanyService } from './company-service.service';
   providers: [
     {
       provide: ICompanyServices,
-      useClass: CompanyService
-    }    
+      useClass: CompanyService,
+    },
   ],
-  exports: [ICompanyServices]
+  exports: [ICompanyServices],
 })
-export class CompanyServiceModule { }
+export class CompanyServiceModule {}

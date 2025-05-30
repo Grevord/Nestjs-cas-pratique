@@ -5,9 +5,12 @@ import { AuthCredEntity } from '../entities/auth-cred.entity';
 
 @Injectable()
 export abstract class ICompanyServices {
+  constructor(protected readonly httpService: HttpService) {}
 
-    constructor(readonly httpService: HttpService){}
-
-    abstract getCompaniesByJobAndSector(city: string, job: string, limit: number): Promise<Company[]>
-    protected abstract getAuthCredentials(): Promise<AuthCredEntity>;
+  abstract getCompaniesByJobAndSector(
+    city: string,
+    job: string,
+    limit: number,
+  ): Promise<Company[]>;
+  protected abstract getAuthCredentials(): Promise<AuthCredEntity>;
 }

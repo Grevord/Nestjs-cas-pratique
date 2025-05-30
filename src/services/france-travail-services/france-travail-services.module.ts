@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 
-import { CompanyServiceModule } from '../../frameworks/franceTravail/company/company-service.module'
+import { CompanyServiceModule } from '../../frameworks/franceTravail/company/company-service.module';
 
 @Module({
   imports: [CompanyServiceModule],
-  exports: [CompanyServiceModule]
+  exports: [CompanyServiceModule],
 })
 export class FranceTravailServicesModule {}
